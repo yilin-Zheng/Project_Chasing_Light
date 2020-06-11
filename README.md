@@ -2,7 +2,7 @@
 
 this is a school project for UAL CCI
  
-This game creates an impressive 3D virtual world, providing grand spacial experience without limiation of physical space.
+This game creates an impressive 3D virtual world, providing grand spacial experience regardless limiation of real space.
 
 Explore and be inspired!
 
