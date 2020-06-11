@@ -124,7 +124,7 @@ public class intro_parent : MonoBehaviour
             sp_ball = 0f;
             ball.transform.position = new Vector3(0, 0, 0);
         }
-        if(Time.time - time > 5)
+        if(Time.time - time > 3.5)
         {
             SceneManager.LoadScene("worldScene");
         }

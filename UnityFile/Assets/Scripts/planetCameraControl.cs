@@ -38,10 +38,10 @@ public class planetCameraControl : MonoBehaviour
     {
         //MC_script.Cube_Num = Small_cubes;
 
-        yaw += speedR * Input.GetAxis("Mouse X");
-        pitch -= speedR * Input.GetAxis("Mouse Y");
-        //transform.rotation = new Quaternion(pitch, yaw, 0.0f, 1.0f);
-        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+        //yaw += speedR * Input.GetAxis("Mouse X");
+        //pitch -= speedR * Input.GetAxis("Mouse Y");
+        ////transform.rotation = new Quaternion(pitch, yaw, 0.0f, 1.0f);
+        //transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 
         //Vector3 m_p = Input.mousePosition;
         //float rotation_x = (m_p.x / Screen.width - 0.5f) * 360f;
