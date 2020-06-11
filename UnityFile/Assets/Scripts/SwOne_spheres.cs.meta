@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a7b26c827831a4d1fabb23406dc65f87
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - smashTriangle: {fileID: 5863321475970670275, guid: 07b43fc5026534118849698405d08979,
+      type: 3}
+  - cam: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
