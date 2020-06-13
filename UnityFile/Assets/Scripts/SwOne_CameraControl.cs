@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SwOne_CameraControl : MonoBehaviour
 {
 
-    public GameObject doorToNextLevel;
+    public GameObject rabbitBall;
     public GameObject sphereToSmash;
     public GameObject mainCamera;
     public GameObject longCamera;
@@ -30,8 +30,9 @@ public class SwOne_CameraControl : MonoBehaviour
     float arcTimer;
     float pause_time;
     bool inPlanet = true;
-    public Vector3 planetCentre = new Vector3(0, 0, 0);
-    Vector3 rabitPosition = new Vector3(0, 0, 0);
+    public Vector3 planetCentre { get; set; }
+    public Vector3 rabitPosition { get; set; }
+    Vector3 lightTrigger_Position = new Vector3(0, 0, 0);
 
     float planetRadius;
 
@@ -68,7 +69,9 @@ public class SwOne_CameraControl : MonoBehaviour
 
     void Start()
     {
-        Vector3 p = new Vector3(0, 0, 0);
+        planetCentre = new Vector3(0, 0, 0);
+        rabitPosition = new Vector3(0, 0, 0);
+
         planet_entered = 3;
         time = Time.time;
         planet = new GameObject[] { pOne, pTwo, pThree };
@@ -84,24 +87,7 @@ public class SwOne_CameraControl : MonoBehaviour
     void Update()
     {
 
-        //yaw += speedR * Input.GetAxis("Mouse X");
-        //pitch -= speedR * Input.GetAxis("Mouse Y");
-        ////transform.rotation = new Quaternion(pitch, yaw, 0.0f, 1.0f);
-        //if (pitch > 90 || pitch < -90)
-        //{
-        //    yaw -= speedR * Input.GetAxis("Mouse X");
-        //    pitch += speedR * Input.GetAxis("Mouse Y");
-        //}
-        //transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-
-
-        Vector3 m_p = Input.mousePosition;
-        float rotation_x = (m_p.x / Screen.width - 0.5f) * 540f;
-        float rotation_y = (m_p.y / Screen.height - 0.5f) * 240;
-        transform.eulerAngles = new Vector3(rotation_y, -rotation_x, 0.0f);
-
-        //-----------------------------
-        float s = speedM / 4 ;
+        float s = speedM *3 ;
 
         if (DoubleClick())
         {
@@ -109,9 +95,11 @@ public class SwOne_CameraControl : MonoBehaviour
         }
         if (stop)
         {
-            s = Input.GetAxis("space") * (speedM /2);
+            s = Input.GetAxis("space") * (speedM);
         }
-        transform.Translate(0, 0, s * Time.deltaTime * 100);
+        this.transform.position += (mainCamera.transform.position - transform.position).normalized * -s *  Time.deltaTime * 50;
+        //transform.Translate(0, 0, s);
+        //Debug.Log(mainCamera.transform.localRotation);
         //-------------------------------
 
         if (inPlanet == true)
@@ -124,11 +112,10 @@ public class SwOne_CameraControl : MonoBehaviour
         if (inPlanet != true)
         {
             this.transform.position = PosiiotnOfRabbit(Time.time - arcTimer);
-            if (Time.time - time > 0.04)
+            if (Time.time - time > 0.06)
             {
-                GameObject g = Instantiate(sphereToSmash, this.transform.position,
+                GameObject g = Instantiate(sphereToSmash, PosiiotnOfRabbit(Time.time - arcTimer),
                     this.transform.rotation);
-                //g.transform.Translate(pos(time));
                 time = Time.time;
             }
 
@@ -140,7 +127,7 @@ public class SwOne_CameraControl : MonoBehaviour
                 this.transform.position = planetCentre;
                 inPlanet = true;
 
-                if (planet_smashed == 3 || planet_smashed == 8 || planet_smashed == 9)
+                if (planet_smashed == 3 || planet_smashed == 8 || planet_smashed == 10)
                 {
                     string[] b = { "planetScene", "TriangleOne", "sphereOne" };
                     int i = Random.Range(0, 3);
@@ -172,10 +159,9 @@ public class SwOne_CameraControl : MonoBehaviour
     {
         //towards new centre
 
-        float f = t * 120;
+        float f = t * 60;
 
         Vector3 direction =  (planetCentre - rabitPosition);
-        Debug.Log(planetCentre);
 
         float arcRad = Mathf.Sin(Mathf.PI * (f /direction.magnitude));
         Vector3 arcDirection = longCamera.transform.position.normalized * arcRad * f;
@@ -202,8 +188,7 @@ public class SwOne_CameraControl : MonoBehaviour
 
             time = Time.time;
             arcTimer = Time.time;
-            planetCentre += new Vector3(Random.Range(-100, 100), Random.Range(-100, 100), Random.Range(-100,100))
-                + lightTrigger.transform.position * 5;//??????
+            planetCentre += new Vector3(Random.Range(-100, 100), Random.Range(-100, 100), Random.Range(-100, 100))*5;//??????
             rabitPosition = this.transform.position;
             num_to_instantiate += 6;
             planet_smashed++;
@@ -212,11 +197,12 @@ public class SwOne_CameraControl : MonoBehaviour
             planetRadius = Random.Range(75, 140);
             GameObject gg = Instantiate(planet[a], planetCentre, this.transform.rotation);
             gg.transform.localScale = new Vector3(10, 10, 10) * planetRadius * 0.9f;
-            Instantiate(lightTrigger,
-                planetCentre + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * planetRadius * 0.9f,
-                Quaternion.identity);
-
-           
+            lightTrigger_Position = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * planetRadius * 0.9f;
+            Instantiate(lightTrigger, planetCentre + lightTrigger_Position, Quaternion.identity);  
+        }
+        if (other.gameObject.CompareTag("wall"))
+        {
+            this.transform.position *= 0.8f;
         }
     }
 

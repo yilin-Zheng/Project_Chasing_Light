@@ -23,7 +23,7 @@ public class sphereOne_particles : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Bounce"))
+        if (other.gameObject.CompareTag("wall"))
         {
             Instantiate(SMSH , this.transform.position, Quaternion.identity);
             count++;

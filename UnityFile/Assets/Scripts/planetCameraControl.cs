@@ -11,7 +11,6 @@ public class planetCameraControl : MonoBehaviour
     int Small_cubes;
 
     public GameObject mainCamera;
-    mainCameraControl MC_script;
     public GameObject mark;
     public GameObject SplitCube;
     public GameObject planet;
@@ -22,34 +21,53 @@ public class planetCameraControl : MonoBehaviour
     public float speedR;
     public float speedM;
 
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
-    
+  
+    //---------------------------------------------
+
+    float clicked = 0;
+    float clicktime = 0;
+    float clickdelay = 0.5f;
+    bool stop = true;
+
+    bool DoubleClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            clicked++;
+            if (clicked == 1) clicktime = Time.time;
+        }
+        if (clicked > 1 && Time.time - clicktime < clickdelay)
+        {
+            clicked = 0;
+            clicktime = 0;
+            return true;
+        }
+        else if (clicked > 2 || Time.time - clicktime > 1) clicked = 0;
+        return false;
+    }
+    //---------------------------------------------
+
     void Start()
     {
         this.gameObject.GetComponent<Rigidbody>().useGravity = true;
         planetScript = planet.GetComponent<Planet>();
-        MC_script = mainCamera.GetComponent<mainCameraControl>();
 
         Small_cubes = 0;
     }
 
     void Update()
     {
-        //MC_script.Cube_Num = Small_cubes;
+        float s = speedM / 2;
 
-        //yaw += speedR * Input.GetAxis("Mouse X");
-        //pitch -= speedR * Input.GetAxis("Mouse Y");
-        ////transform.rotation = new Quaternion(pitch, yaw, 0.0f, 1.0f);
-        //transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-
-        //Vector3 m_p = Input.mousePosition;
-        //float rotation_x = (m_p.x / Screen.width - 0.5f) * 360f;
-        //float rotation_y = (m_p.y / Screen.height - 0.5f) * 180f;
-        //transform.eulerAngles = new Vector3(rotation_y, -rotation_x, 0.0f);
-
-        float s = Input.GetAxis("space") * speedM;
-        transform.Translate(0, 0, s);
+        if (DoubleClick())
+        {
+            stop = !stop;
+        }
+        if (stop)
+        {
+            s = Input.GetAxis("space") * (speedM);
+        }
+        this.transform.position += (mainCamera.transform.position - transform.position).normalized * -s * Time.deltaTime * 50;
 
     }
 

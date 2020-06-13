@@ -41,7 +41,7 @@ public class intro_ball : MonoBehaviour
         {
             stop = !stop;
         }
-        float s = 1.8f;
+        float s = 3.8f;
         if (stop)
         {
             s = Input.GetAxis("space");

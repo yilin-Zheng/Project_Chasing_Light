@@ -38,9 +38,11 @@ namespace FeatherLib
             Debug.Log("Start Y Rot: "+ _yRot);
         }
 
+
         // Update is called once per frame
         void Update()
         {
+            
             _mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
             _mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
             //this is for freezing when the game is paused
