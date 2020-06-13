@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+
 
 public class menu : MonoBehaviour
 {
@@ -30,25 +32,30 @@ public class menu : MonoBehaviour
 
     public void sceneSphere()
     {
+        gameObject.GetComponent<AudioSource>().Play();
         SceneManager.LoadScene("worldScene");
     }
 
     public void backToGame()
     {
+        gameObject.GetComponent<AudioSource>().Play();
         SceneManager.UnloadSceneAsync("Menu");
     }
 
 
     public void triangleOne()
     {
+        gameObject.GetComponent<AudioSource>().Play();
         SceneManager.LoadScene("TriangleOne");
     }
     public void sphereOne()
     {
+        gameObject.GetComponent<AudioSource>().Play();
         SceneManager.LoadScene("sphereOne");
     }
     public void planet()
     {
+        gameObject.GetComponent<AudioSource>().Play();
         SceneManager.LoadScene("planetScene");
     }
 

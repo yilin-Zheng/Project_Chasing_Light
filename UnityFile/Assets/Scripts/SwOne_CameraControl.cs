@@ -35,6 +35,7 @@ public class SwOne_CameraControl : MonoBehaviour
     Vector3 lightTrigger_Position = new Vector3(0, 0, 0);
 
     float planetRadius;
+    float smashPitch = 1f;
 
 
     public GameObject pOne;
@@ -116,6 +117,7 @@ public class SwOne_CameraControl : MonoBehaviour
             {
                 GameObject g = Instantiate(sphereToSmash, PosiiotnOfRabbit(Time.time - arcTimer),
                     this.transform.rotation);
+                g.GetComponent<AudioSource>().pitch = smashPitch * Random.Range(0.7f, 1.2f);
                 time = Time.time;
             }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 
 public class triangleCameraControl : MonoBehaviour
@@ -36,7 +37,8 @@ public class triangleCameraControl : MonoBehaviour
     }
     //---------------------------------------------
 
-    void LateUpdate()
+
+    void Update()
     {
 
         float s = speedM/2;
@@ -74,6 +76,8 @@ public class triangleCameraControl : MonoBehaviour
             Debug.Log("is Kinematic");
             //this.transform.position *= 0.7f;
             gameObject.GetComponent<Rigidbody>().useGravity = false;
+            gameObject.GetComponent<AudioSource>().Play();
+
         }
     }
 
