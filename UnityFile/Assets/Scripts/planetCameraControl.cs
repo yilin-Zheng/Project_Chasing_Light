@@ -14,6 +14,8 @@ public class planetCameraControl : MonoBehaviour
     public GameObject mark;
     public GameObject SplitCube;
     public GameObject planet;
+    public GameObject sound;
+
     //[HideInInspector]
     //public Vector3 hitPosition;
     private Planet planetScript;
@@ -94,13 +96,12 @@ public class planetCameraControl : MonoBehaviour
             //{
             //    Destroy(g);
             //}
-            gameObject.GetComponent<AudioSource>().Play();
             SceneManager.UnloadSceneAsync("planetScene");
-
             if (SceneManager.GetSceneByName("worldScene").isLoaded != true)
             {
                 SceneManager.LoadScene("worldScene");
             }
+
             GameObject[] objs = SceneManager.GetSceneByName("worldScene").GetRootGameObjects();
             foreach (GameObject g in objs)
             {

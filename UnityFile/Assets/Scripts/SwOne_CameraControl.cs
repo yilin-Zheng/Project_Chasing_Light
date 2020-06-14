@@ -184,6 +184,8 @@ public class SwOne_CameraControl : MonoBehaviour
             longCamera.SetActive(true);
             longLight.SetActive(true);
             mainCamera.SetActive(false);
+            longCamera.GetComponent<AudioSource>().Play();
+
             longCamera.transform.position = planetCentre * 2;
 
             time = Time.time;

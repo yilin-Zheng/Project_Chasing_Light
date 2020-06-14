@@ -15,12 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: e1a0ea879491d4af4839cb8c78c5119d
   - enabled: 1
-    path: Assets/Scenes/planetScene.unity
-    guid: 84dd244b7657143ef881d898baa5aadb
-  - enabled: 1
     path: Assets/Scenes/worldScene.unity
     guid: 88e6d14b7a0ae4ea9be2dbe1989a10b7
   - enabled: 1
+    path: Assets/Scenes/planetScene.unity
+    guid: 84dd244b7657143ef881d898baa5aadb
+  - enabled: 0
     path: Assets/Scenes/doorSphere.unity
     guid: eff0fa7ddec0b4c38a0da67c3d23556f
   - enabled: 1

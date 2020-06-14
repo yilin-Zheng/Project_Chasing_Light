@@ -711,6 +711,7 @@ MonoBehaviour:
   SplitCube: {fileID: 625259788155097530, guid: e8c375375490346b7a18b3ca4eb3ca09,
     type: 3}
   planet: {fileID: 1143843871005442895}
+  sound: {fileID: 3812067222161554403, guid: f180c63388b1242578651cd0bb9f093d, type: 3}
   speedR: 2
   speedM: 0.3
 --- !u!135 &1450503076
