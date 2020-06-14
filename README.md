@@ -6,4 +6,4 @@ This game creates an impressive 3D virtual world, providing grand spacial experi
 
 Explore and be inspired!
 
-link at: https://yilin-zheng.github.io/Project_Chasing_Light/WebGL/index.html
+Game link at: https://yilin-zheng.github.io/Project_Chasing_Light/WebGL/index.html
