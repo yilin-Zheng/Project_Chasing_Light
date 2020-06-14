@@ -74,24 +74,39 @@ public class intro_parent : MonoBehaviour
         {
             step = 1;
             gameObject.GetComponent<AudioSource>().Play();
-            guideTxt.GetComponent<Text>().text = "CLICK\n or press SPACK";
+            guideTxt.GetComponent<Text>().text = "press SPACE";
             // print click or press space to move
+        }
+
+        if (Input.GetMouseButtonDown(0) && step == 1)
+        {
+            step = 2;
+            gameObject.GetComponent<AudioSource>().Play();
+            guideTxt.GetComponent<Text>().text = "Double CLICK";
         }
 
         if (DoubleClick())
         {
             stop = !stop;
-            if (step == 2)
+
+            if (step == 2 )
             {
-                step++;
+                step = 3;
                 gameObject.GetComponent<AudioSource>().Play();
-                guideTxt.GetComponent<Text>().text = "";
-                startBtn.gameObject.SetActive(true);
+                guideTxt.GetComponent<Text>().text = "Double CLICK\n again ";
             }
         }
         if (stop)
         {
             s = speedM;
+        }
+
+        if (step == 3 && stop != true)
+        {
+            step++;
+            gameObject.GetComponent<AudioSource>().Play();
+            guideTxt.GetComponent<Text>().text = "";
+            startBtn.gameObject.SetActive(true);
         }
 
         control += s;
