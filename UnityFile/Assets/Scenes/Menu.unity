@@ -1101,7 +1101,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Game By: \n        Yilin Zheng\nAudio By: \n        Yicen Tian"
+  m_Text: "Game by: \n        Yilin Zheng\nAudio by: \n        Yicen Tian"
 --- !u!222 &1314895002
 CanvasRenderer:
   m_ObjectHideFlags: 0

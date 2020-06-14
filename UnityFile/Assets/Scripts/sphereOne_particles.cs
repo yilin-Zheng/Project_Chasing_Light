@@ -25,7 +25,7 @@ public class sphereOne_particles : MonoBehaviour
             //gameObject.GetComponent<Rigidbody>().useGravity = false;
 
             gameObject.GetComponent<AudioSource>().pitch = Random.Range(1f, 1.7f);
-            gameObject.GetComponent<AudioSource>().Play();
+            //gameObject.GetComponent<AudioSource>().Play();
             count++;
             if (count <4)
             {
