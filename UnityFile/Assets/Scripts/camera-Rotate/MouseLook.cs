@@ -36,6 +36,10 @@ namespace FeatherLib
             //_targetYRot = _playerBody.rotation;
             _yRot = _playerBody.rotation.eulerAngles.y;
             Debug.Log("Start Y Rot: "+ _yRot);
+
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
 
@@ -68,8 +72,8 @@ namespace FeatherLib
             transform.localRotation = transform.localRotation.SmoothDamp(_targetXRot, ref _derivX, smoothTime );
             _playerBody.rotation = _playerBody.rotation.SmoothDamp(_targetYRot, ref _derivY, smoothTime );
             }
-            
-            InternalLockUpdate();
+
+            //InternalLockUpdate();
         }
         
         float ClampAngle (float angle, float min, float max)
@@ -94,7 +98,7 @@ namespace FeatherLib
             }
             else if(Input.GetMouseButtonUp(0))
             { 
-                _cursorIsLocked = true;
+                _cursorIsLocked = false;
             }
 
             if (_cursorIsLocked)
