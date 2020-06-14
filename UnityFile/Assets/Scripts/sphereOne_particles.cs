@@ -16,18 +16,21 @@ public class sphereOne_particles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (count > 3)
-        {
-            Destroy(gameObject);
-        }
+        Physics.gravity = new Vector3(0, -25, 0); 
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("wall"))
         {
-            Instantiate(SMSH , this.transform.position, Quaternion.identity);
+            //gameObject.GetComponent<Rigidbody>().useGravity = false;
+
+            gameObject.GetComponent<AudioSource>().pitch = Random.Range(1f, 1.7f);
+            gameObject.GetComponent<AudioSource>().Play();
             count++;
-            Debug.Log(count);
+            if (count <4)
+            {
+                Instantiate(SMSH, this.transform.position, Quaternion.identity);
+            }
         }
     }
 }

@@ -52,7 +52,6 @@ public class intro_parent : MonoBehaviour
         startBtn.gameObject.SetActive(false);
         ball.SetActive(false);
         ballParts.SetActive(false);
-        guideTxt.GetComponent<Text>().fontSize = 24;
     }
 
     void Update()
@@ -74,6 +73,7 @@ public class intro_parent : MonoBehaviour
         if (Mathf.Abs(yaw) > 30 && step==0)
         {
             step = 1;
+            gameObject.GetComponent<AudioSource>().Play();
             guideTxt.GetComponent<Text>().text = "CLICK\n or press SPACK";
             // print click or press space to move
         }
@@ -84,6 +84,7 @@ public class intro_parent : MonoBehaviour
             if (step == 2)
             {
                 step++;
+                gameObject.GetComponent<AudioSource>().Play();
                 guideTxt.GetComponent<Text>().text = "";
                 startBtn.gameObject.SetActive(true);
             }
@@ -99,6 +100,7 @@ public class intro_parent : MonoBehaviour
             if (step == 1)
             {
                 step = 2;
+                gameObject.GetComponent<AudioSource>().Play();
                 guideTxt.GetComponent<Text>().text = "Double CLICK";
                 ///double click
             }
@@ -124,7 +126,7 @@ public class intro_parent : MonoBehaviour
             sp_ball = 0f;
             ball.transform.position = new Vector3(0, 0, 0);
         }
-        if(Time.time - time > 3.5)
+        if(Time.time - time > 3)
         {
             SceneManager.LoadScene("worldScene");
         }
@@ -134,7 +136,7 @@ public class intro_parent : MonoBehaviour
     public void loadGame()
     {
         ball.SetActive(true);
-
+        startBtn.GetComponent<AudioSource>().Play();
         sp_ball = 5f;
         ball.transform.rotation = this.transform.rotation;
         ball.transform.Translate(0, 0, -300);

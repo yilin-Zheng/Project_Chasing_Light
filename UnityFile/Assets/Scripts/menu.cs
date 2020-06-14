@@ -45,17 +45,17 @@ public class menu : MonoBehaviour
 
     public void triangleOne()
     {
-        gameObject.GetComponent<AudioSource>().Play();
+        //gameObject.GetComponent<AudioSource>().Play();
         SceneManager.LoadScene("TriangleOne");
     }
     public void sphereOne()
     {
-        gameObject.GetComponent<AudioSource>().Play();
+        //gameObject.GetComponent<AudioSource>().Play();
         SceneManager.LoadScene("sphereOne");
     }
     public void planet()
     {
-        gameObject.GetComponent<AudioSource>().Play();
+        //gameObject.GetComponent<AudioSource>().Play();
         SceneManager.LoadScene("planetScene");
     }
 

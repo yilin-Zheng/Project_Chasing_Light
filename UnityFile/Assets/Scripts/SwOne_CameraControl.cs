@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class SwOne_CameraControl : MonoBehaviour
 {
@@ -18,9 +19,6 @@ public class SwOne_CameraControl : MonoBehaviour
 
     public float speedR = 1.0f;
     public float speedM = 1.0f;
-
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
 
     int planet_entered;
     int planet_smashed;
@@ -129,7 +127,8 @@ public class SwOne_CameraControl : MonoBehaviour
                 this.transform.position = planetCentre;
                 inPlanet = true;
 
-                if (planet_smashed == 3 || planet_smashed == 8 || planet_smashed == 10)
+                if (planet_smashed == 3 || planet_smashed == 6 || planet_smashed == 8
+                    || planet_smashed == 12 || planet_smashed == 13 || planet_smashed == 17 || planet_smashed == 20)
                 {
                     string[] b = { "planetScene", "TriangleOne", "sphereOne" };
                     int i = Random.Range(0, 3);
@@ -139,21 +138,19 @@ public class SwOne_CameraControl : MonoBehaviour
                     {
                         g.SetActive(false);
                     }
+
                     SceneManager.LoadSceneAsync(b[i], LoadSceneMode.Additive);
                 }
+
+                //if(planet_smashed == 9)
+                //{
+                //    //infinity mode  or back to game
+                //    //load menu
+                //    //button: back to game or see more scense
+                //}
             }
         }
 
-
-        //if (planet_smashed == 4)
-        //{
-        //    Debug.Log("the fourth");
-        //    //Button btn = Instantiate(winTxt, canv.transform.position, Quaternion.identity);
-        //    //btn.transform.parent = canv.transform;
-
-        //    //doorToNextLevel = Instantiate(doorToNextLevel, new Vector3(0, 0, 0), Quaternion.identity);
-        //    //need a spetacular smashing animation
-        //}
     }
 
 
@@ -161,7 +158,7 @@ public class SwOne_CameraControl : MonoBehaviour
     {
         //towards new centre
 
-        float f = t * 60;
+        float f = t * 90;
 
         Vector3 direction =  (planetCentre - rabitPosition);
 
@@ -169,7 +166,7 @@ public class SwOne_CameraControl : MonoBehaviour
         Vector3 arcDirection = longCamera.transform.position.normalized * arcRad * f;
 
         //return new Quaternion(x, y, z, w);
-        return rabitPosition + direction * (f /direction.magnitude) + arcDirection;
+        return rabitPosition + direction * (f /direction.magnitude) + arcDirection * 0.8f;
     }
 
     void OnTriggerEnter(Collider other)
@@ -198,7 +195,7 @@ public class SwOne_CameraControl : MonoBehaviour
             int a = Random.Range(0, 3);
             planetRadius = Random.Range(75, 140);
             GameObject gg = Instantiate(planet[a], planetCentre, this.transform.rotation);
-            gg.transform.localScale = new Vector3(10, 10, 10) * planetRadius * 0.9f;
+            gg.transform.localScale = new Vector3(10, 10, 10) * planetRadius;
             lightTrigger_Position = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * planetRadius * 0.9f;
             Instantiate(lightTrigger, planetCentre + lightTrigger_Position, Quaternion.identity);  
         }

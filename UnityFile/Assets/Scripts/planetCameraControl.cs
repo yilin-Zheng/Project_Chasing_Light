@@ -77,6 +77,8 @@ public class planetCameraControl : MonoBehaviour
         {
             this.gameObject.GetComponent<Rigidbody>().useGravity = false;
             Instantiate(mark, this.transform.position + new Vector3(0, 0, -3), this.transform.rotation);
+            gameObject.GetComponent<AudioSource>().pitch = Random.Range(0.5f, 1.5f);
+            gameObject.GetComponent<AudioSource>().Play();
             cube_split();
             planetScript.hitPosition = this.transform.position;
             this.transform.position *= 0.6f;
@@ -86,12 +88,13 @@ public class planetCameraControl : MonoBehaviour
         if (other.gameObject.CompareTag("door"))
         {
             //Debug.Log("hithithit");
-            
+
             //GameObject[] obj = SceneManager.GetSceneByName("planetScene").GetRootGameObjects();
             //foreach (GameObject g in obj)
             //{
             //    Destroy(g);
             //}
+            gameObject.GetComponent<AudioSource>().Play();
             SceneManager.UnloadSceneAsync("planetScene");
 
             if (SceneManager.GetSceneByName("worldScene").isLoaded != true)

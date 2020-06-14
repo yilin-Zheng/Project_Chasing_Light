@@ -60,7 +60,7 @@ public class sphereOne : MonoBehaviour
 
         shadow1.transform.Rotate(0, 0.1f, 0.1f);
         shadow2.transform.Rotate(0.1f, s *10, 0.2f);
-        balls.transform.Rotate(0, 0.2f, 0.1f);
+        //balls.transform.Rotate(0, 0.2f, 0.1f);
 
     }
 
@@ -80,6 +80,15 @@ public class sphereOne : MonoBehaviour
                 g.SetActive(true);
             }
         }
+        if (other.gameObject.CompareTag("wall"))
+        {
+            gameObject.GetComponent<AudioSource>().Play(0);
+        }
+        if (other.gameObject.CompareTag("planet"))
+        {
+            gameObject.GetComponent<AudioSource>().Play(0);
+        }
+
     }
 
 }
