@@ -1101,7 +1101,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Game design: \n        Yilin Zheng\nSonic design: \n        Yicen Tian"
+  m_Text: "Game design: \n        Yilin Zheng\nSonic design: \n        Yicen Tian\n       
+    (Cen)"
 --- !u!222 &1314895002
 CanvasRenderer:
   m_ObjectHideFlags: 0
